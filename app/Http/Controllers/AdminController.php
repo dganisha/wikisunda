@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
 use App\Article;
+use Validator;
+use File;
 
 class AdminController extends Controller
 {
@@ -15,7 +18,8 @@ class AdminController extends Controller
 
     public function index()
     {
-    	return view('admin.index');
+    	$artikel = Article::get();
+    	return view('admin.index', compact('artikel'));
     }
 
     public function show_create()
@@ -26,26 +30,81 @@ class AdminController extends Controller
     public function create_artikel(Request $request)
     {
     	// return $request->all();
-    	$validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'artikel_title' => 'required',
             'artikel_desk' => 'required',
-            'artikel_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'artikel_artikel' => 'required'
+            'artikel_photo' => 'required|max:2048',
+            'artikel_artikel' => 'required',
+            'artikel_cate' => 'required'
         ]);
-        if ($validator->fails()) {
-          return redirect('/admin/create')->with('failed', 'Kolom ada yang belum terisi atau format file image salah.');           
-        }
-        if($request->hasFile('images')){
-            $image = $request->file('images');
+        if($request->hasFile('artikel_photo')){
+            $image = $request->file('artikel_photo');
             $name = time().'.'.$image->getClientOriginalExtension();
-            
+
             $bikin = Article::create([
             			'user_id' => Auth::user()->id,
             			'title' => $request->artikel_title,
             			'description' => $request->artikel_desk,
             			'article' => $request->artikel_artikel,
-            			'category' => $request->artikel_category
+            			'category' => $request->artikel_cate,
+            			'image' => '',
+            			'viewer' => '0'
             		]);
+            $destinationPath = public_path('/article/').$bikin->id;
+            if(File::exists($destinationPath)){
+                return redirect('/admin/create')->with('failed', 'kesalahan jaringan, silahkan ulangi kembali.');
+            }
+            $image->move($destinationPath, $name);
+            $updateBikin = $bikin->update(['image' => $name]);
+            if($bikin && $updateBikin){
+            	return redirect('/admin')->with('success','Berhasil menambahkan artikel!');
+            }else{
+            	return redirect('/admin')->with('failed','Gagal menambahkan artikel!');
+            }
         }
+    }
+
+    public function show_edit($id)
+    {
+    	$artikel = Article::findOrFail($id);
+    	return view('admin.edit', compact('artikel'));
+    }
+
+    public function edit_artikel(Request $request)
+    {
+    	// return $request->all();
+        $this->validate($request, [
+            'artikel_title' => 'required',
+            'artikel_desk' => 'required',
+            'artikel_artikel' => 'required',
+            'artikel_cate' => 'required'
+        ]);
+        $cariArtikel = Article::findOrFail($request->artikelid);
+        if($cariArtikel){
+        	$bikin = $cariArtikel->update([
+	            'user_id' => Auth::user()->id,
+	            'title' => $request->artikel_title,
+	            'description' => $request->artikel_desk,
+	            'article' => $request->artikel_artikel,
+	            'category' => $request->artikel_cate,
+	        ]);
+	        if($request->hasFile('artikel_photo')){
+	        	$image = $request->file('artikel_photo');
+	            $name = time().'.'.$image->getClientOriginalExtension();
+	            $destinationPath = public_path('/article/').$cariArtikel->id;
+	            if(!File::exists($destinationPath)){
+	                return redirect('/admin/create')->with('failed', 'kesalahan jaringan, silahkan ulangi kembali.');
+	            }
+	            $image->move($destinationPath, $name);
+	            $updateBikin = $cariArtikel->update(['image' => "/article/$cariArtikel->id/$name"]);
+	        }
+	        if($bikin || $updateBikin){
+	        	return redirect('/admin')->with('success','Berhasil menambahkan artikel!');
+	       	}else{
+	        	return redirect('/admin')->with('failed','Gagal menambahkan artikel!');
+	       	}
+	    }else{
+	    	return redirect()->back();
+	    }
     }
 }
