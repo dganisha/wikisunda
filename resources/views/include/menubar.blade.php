@@ -1,5 +1,5 @@
 		<ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link waves-effect waves-light" href="/">Home
                 <span class="sr-only">(current)</span>
             </a>
