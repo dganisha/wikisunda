@@ -28,7 +28,8 @@
             </div>
             <label for="titleName" class="grey-text font-weight-light">Category Article</label>
             <div class="input-group mb-3">
-              <select class="form-control" name="artikel_cate">
+              <select class="browser-default custom-select" name="artikel_cate">
+                <option value="{{ $artikel->category }}">{{ $artikel->category }} (Current)</option>
               	<option value="art">Art</option>
               	<option value="place">Place</option>
               	<option value="history">History</option>

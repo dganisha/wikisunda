@@ -26,14 +26,12 @@
                <input type="text" name="artikel_desk" class="form-control" placeholder="Description Article">
             </div>
             <label for="titleName" class="grey-text font-weight-light">Category Article</label>
-            <div class="input-group mb-3">
-              <select class="form-control" name="artikel_cate">
+              <select class="browser-default custom-select" name="articel_cate">
               	<option value="art">Art</option>
               	<option value="place">Place</option>
               	<option value="history">History</option>
               	<option value="culinary">Culinary</option>
               </select>
-            </div>
             <label for="titleName" class="grey-text font-weight-light">Photo Article</label>
             <div class="input-group mb-3">
                <input type="file" name="artikel_photo">
