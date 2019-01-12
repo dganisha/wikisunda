@@ -1,63 +1,79 @@
+
 @extends('template.home')
 
 @section('content')
-	<div class="container">
+
+<br>
+
+  
+
+
+
+
+    <div class="container">
         <!-- Content here -->
 
         <!--Carousel Wrapper-->
-        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+<!-- Card Regular -->
 
-            <!--Controls-->
-            <div class="controls-top">
-                <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-users"></i></a>
-                <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-            </div>
-            <!--/.Controls-->
+</div>
+<!-- Card Regular -->
 
-            <!--Indicators-->
-            <ol class="carousel-indicators">
-                <li data-target="#multi-item-example" data-slide-to="0" ></li>
-                <li data-target="#multi-item-example" data-slide-to="1" class="active"></li>
-                <li data-target="#multi-item-example" data-slide-to="2"></li>
-            </ol>
-            <!--/.Indicators-->
 
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-                
-                <div class="carousel-item active">
-                    @foreach($artikel as $arti)
-                    <div class="col-md-4 clearfix d-none d-md-block">
-                        <div class="card mb-2">
-                            <img class="card-img-top" src="{{ $arti->image }}" alt="{{ $arti->title }}" style="width:300;max-width:300px" height="270">
+<div id="home-section">
+      <div class="container">
+        <div class="container">
+            <nav class="d-flex justify-content-center wow fadeIn my-5">
+                <h4>Real art about sunda</h4>
+            </nav>
+            <hr>
+            <!--Section: Cards-->
+            <section class="text-center">
+
+                <!--Grid row-->
+                <div class="row mb-4 wow fadeIn">
+
+                 @foreach($artikel as $arti)
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <!--Card-->
+                        <div class="card">
+
+                  
+                                    <img class="card-img-top" src="{{ $arti->image }}" alt="{{ $arti->title }}" >
+                             
+
+                            <!--Card content-->
                             <div class="card-body">
-                                <h4 class="card-title">{{ $arti->title }}</h4>
+                                <!--Title-->
+                               <!-- Title -->
+      <h4 class="card-title">{{ $arti->title }}</h4>
                                 <p class="card-text">{{ $arti->description }}</p>
                                 <a href="artikel/history/artikel-{{ urlSlug($arti->title) }}" class="btn btn-primary">Lihat Selengkapnya</a>
+                                    <i class="fa fa-play ml-2"></i>
+                                </a>
                             </div>
+
                         </div>
+                        <!--/.Card-->
+
                     </div>
+                    <!--Grid column-->
                     @endforeach
+
                 </div>
-                <!--/.First slide-->
-            </div>
+                <!--Grid row-->
+
+            </section>
+         </div>
         </div>
 
-        <div class="card ">
-            <div class="card-header">
-            <h5 >Gunung Tangkuban Perahu History</h5>
-            </div>
-            <div class="card-body">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg" alt="Card image cap">
-               
-                <p class="card-text">The mountain boat also called tangkuban perahu are the most uniwue mountain who...cnksjanfkasndlksajdklasjdlkajdlkjalkdjalkjdlkajdlkandasndkjasdnkajndkajsdlahdkjhjkdhakjlhdkaslhdkjashdkjahsdkjashdklhaskjdlhasjkldhakslhdkjaslhdkjashdjkashdkjashdkjhsakdhsaklhdkaslhdklahdka.....</p>
-                <a href="#!" class="btn btn-primary">continue reading</a>
-            </div>
-            <div class="card-footer text-muted">
-                2 days ago
-            </div>
         </div>
         <br>
-      
+    </div>
 
 @endsection
+
+
+
+
