@@ -14,6 +14,10 @@
     <!-- Material Design Bootstrap -->
     <link href="{{ asset("/wikisunda/homebro_files/mdb.min.css") }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("/wikisunda/public/css/style.css") }}">
+    @if(Auth::user())
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    @endif
     <style type="text/css">
       /* Navigation*/
       .navbar {
@@ -69,7 +73,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar fixed-top">
 
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="https://mdbootstrap.com/previews/docs/latest/html/carousel/video/index.html#">WIKISUNDA</a>
+      @if(Auth::user())
+        @php $url = "/admin"; @endphp
+      @else
+        @php $url = "/"; @endphp
+      @endif
+      <a class="navbar-brand" href="{{ $url }}">WIKISUNDA</a>
 
       <!-- Collapse button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,18 +126,33 @@
     <script type="text/javascript" src="{{ asset("/wikisunda/homebro_files/mdb.min.js.download") }}"></script><div class="hiddendiv common"></div>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" />
     <script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    @if(Auth::user())
+    <!-- CK Editor -->
+    <script src="https://adminlte.io/themes/AdminLTE/bower_components/ckeditor/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <script>
-  $(function () {
-    $('#article').DataTable()
-    $('#table').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+      $(function () {
+        $('#article').DataTable()
+        $('#table').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : true,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+      })
+    </script>
+    <script>
+      $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('artikel_editor')
+        //bootstrap WYSIHTML5 - text editor
+        $('.textarea').wysihtml5()
+      })
+    </script>
+    @endif
 </body>
 </html>

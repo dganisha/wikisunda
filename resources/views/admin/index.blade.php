@@ -7,7 +7,7 @@
         </div>
 	    <div class="row">
 	        <div class="col-12 mb-3">
-	            <a href="create.html" class="btn btn-primary btn-sm m-0 waves-effect">Add New Article</a>
+	            <a href="/admin/create" class="btn btn-primary btn-sm m-0 waves-effect">Add New Article</a>
 	        </div>
 	    </div>
 	   

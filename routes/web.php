@@ -23,6 +23,8 @@ Route::get('/place', 'IndexController@place');
 //Administrator
 Route::group(['middleware' => ['auth']], function (){
 	Route::get('/admin', 'AdminController@index');
+	Route::get('/admin/create', 'AdminController@show_create');
+	Route::post('/admin/create', 'AdminController@create_artikel');
 });
 
 Auth::routes();
