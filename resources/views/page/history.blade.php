@@ -144,34 +144,21 @@
             </div>
         </div>
 
-        <div class="card text-center">
+        <div class="card ">
             <div class="card-header">
-                Featured
+            <h5 >Gunung Tangkuban Perahu History</h5>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#!" class="btn btn-primary">Go somewhere</a>
+                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg" alt="Card image cap">
+               
+                <p class="card-text">The mountain boat also called tangkuban perahu are the most uniwue mountain who...cnksjanfkasndlksajdklasjdlkajdlkjalkdjalkjdlkajdlkandasndkjasdnkajndkajsdlahdkjhjkdhakjlhdkaslhdkjashdkjahsdkjashdklhaskjdlhasjkldhakslhdkjaslhdkjashdjkashdkjashdkjhsakdhsaklhdkaslhdklahdka.....</p>
+                <a href="#!" class="btn btn-primary">continue reading</a>
             </div>
             <div class="card-footer text-muted">
                 2 days ago
             </div>
         </div>
         <br>
-        <div class="card text-center">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#!" class="btn btn-primary">Go somewhere</a>
-            </div>
-            <div class="card-footer text-muted">
-                2 days ago
-            </div>
-        </div>
-        <br>
-    </div>
+      
 
 @endsection

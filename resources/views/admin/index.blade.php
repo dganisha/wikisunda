@@ -14,7 +14,7 @@
 	    <div class="row">
 	         <div class="col-12">
 	            <div class="content border">
-	               <table id="article" class="table table-striped table-bordered" style="width:100%">
+	               <table class="table table-bordered">
 	                  <col width="5%">
 	                  <col width="20%">
 	                  <col width="55%">
