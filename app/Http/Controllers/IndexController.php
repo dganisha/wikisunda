@@ -9,25 +9,25 @@ class IndexController extends Controller
 {
     public function art()
     {
-        $artikel = Article::where('category','art')->limit(3)->inRandomOrder()->get();
+        $artikel = Article::where('category','art')->inRandomOrder()->get();
         return view('page.art', compact('artikel'));
     }
 
     public function culinary()
     {
-        $artikel = Article::where('category','culinary')->limit(3)->inRandomOrder()->get();
+        $artikel = Article::where('category','culinary')->inRandomOrder()->get();
         return view('page.culinary', compact('artikel'));
     }
 
     public function history()
     {
-        $artikel = Article::where('category','history')->limit(3)->inRandomOrder()->get();
+        $artikel = Article::where('category','history')->inRandomOrder()->get();
         return view('page.history', compact('artikel'));
     }
 
     public function place()
     {
-        $artikel = Article::where('category','place')->limit(3)->inRandomOrder()->get();
+        $artikel = Article::where('category','place')->inRandomOrder()->get();
         return view('page.place', compact('artikel'));
     }
 

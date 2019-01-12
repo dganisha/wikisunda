@@ -38,8 +38,8 @@
 			              @endforeach
 			            </div>
 				    @endif
-	            <div class="content border">
-	               <table class="table table-bordered">
+	            <div class="table-responsive">
+	               <table id="table" class="table table-striped table-bordered table-box">
 	                  <col width="5%">
 	                  <col width="20%">
 	                  <col width="55%">
@@ -52,16 +52,16 @@
 	                     </tr>
 	                  </thead>
 	                  <tbody>
-	                  	@foreach($artikel as $atl)
 	                  	@php $no = 1; @endphp
+	                  	@foreach($artikel as $atl)
 	                  	<tr id="{{ $atl->id }}">
-	                  		<th class="text-center">{{ $no }}</th>
-	                  		<th>{{ $atl->title }}</th>
-	                  		<th>{{  $atl->description }}</th>
-	                  		<th>
+	                  		<td class="text-center">{{ $no++ }}</td>
+	                  		<td>{{ $atl->title }}</td>
+	                  		<td>{{  $atl->description }}</td>
+	                  		<td>
 	                  			<a href="/admin/artikel/{{ $atl->id }}" class="btn btn-success btn-sm m-0 waves-effect">Edit</a>
 	                  			<a><button type="button" class="delete btn btn-danger btn-sm m-0 waves-effect" data-artikel="{{ $atl->id }}"><i class="fa fa-trash-o fa-1x"></i> Delete</button></a>
-	                  		</th>
+	                  		</td>
 	                  	</tr>
 	                  	@endforeach
 	                  </tbody>
