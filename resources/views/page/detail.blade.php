@@ -18,15 +18,16 @@
 
         <div class="card text-center">
             <div class="card-header">
-                Featured
+                {{ $cariArtikel->category }}
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#!" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">{{ $cariArtikel->title }}</h5>
+                <small class="text-muted" style="font-size: 10px">oleh {{ $cariArtikel->user->name }}</small>
+                <hr>
+                <p class="card-text">{!! $cariArtikel->article !!}</p>
             </div>
             <div class="card-footer text-muted">
-                2 days ago
+                {{ $cariArtikel->created_at }} - <small>dilihat: {{ $cariArtikel->viewer }}</small>
             </div>
         </div>
         <br>

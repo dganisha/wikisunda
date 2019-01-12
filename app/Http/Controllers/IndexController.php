@@ -43,7 +43,8 @@ class IndexController extends Controller
         $judul = unSlug($artikel_judul);
         $cariArtikel = Article::where('title', $judul)->first();
         if($cariArtikel){
-            
+            $updateView = $cariArtikel->update(['viewer' => $cariArtikel->viewer + 1]);
+            return view('page.detail', compact('cariArtikel'));
         }else{
             return "/";
         }

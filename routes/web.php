@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('page.home');
 });
-Route::get('/detail', 'IndexController@detail');
+// Route::get('/detail', 'IndexController@detail');
 Route::get('/art', 'IndexController@art');
 Route::get('/culinary', 'IndexController@culinary');
 Route::get('/history', 'IndexController@history');
