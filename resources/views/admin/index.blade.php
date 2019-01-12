@@ -39,7 +39,7 @@
 			            </div>
 				    @endif
 	            <div class="table-responsive">
-	               <table id="table" class="table table-striped table-bordered table-box">
+	               <table id="table" class="table table-hover">
 	                  <col width="5%">
 	                  <col width="20%">
 	                  <col width="55%">
