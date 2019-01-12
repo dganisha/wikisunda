@@ -80,7 +80,11 @@
       <div class="collapse navbar-collapse" id="basicExampleNav">
         
         <!-- Menu -->
+        @if(Auth::user())
+        @include('include.menubar_admin')
+        @else
         @include('include.menubar')
+        @endif
 
         <form class="form-inline">
           <div class="md-form my-0">
@@ -97,7 +101,9 @@
     @yield('content')
 
     <!--Footer-->
+    @if(!Auth::user())
     @include('include.footer')
+    @endif
     <!--/.Footer-->
 
     <!-- SCRIPTS -->
@@ -108,7 +114,21 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="{{ asset("/wikisunda/homebro_files/bootstrap.min.js.download") }}"></script>
     <!-- MDB core JavaScript -->
-   <script type="text/javascript" src="{{ asset("/wikisunda/homebro_files/mdb.min.js.download") }}"></script><div class="hiddendiv common"></div>
-
-
-</body></html>
+    <script type="text/javascript" src="{{ asset("/wikisunda/homebro_files/mdb.min.js.download") }}"></script><div class="hiddendiv common"></div>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" />
+    <script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script>
+  $(function () {
+    $('#article').DataTable()
+    $('#table').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+</body>
+</html>

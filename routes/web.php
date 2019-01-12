@@ -20,6 +20,11 @@ Route::get('/culinary', 'IndexController@culinary');
 Route::get('/history', 'IndexController@history');
 Route::get('/place', 'IndexController@place');
 
+//Administrator
+Route::group(['middleware' => ['auth']], function (){
+	Route::get('/admin', 'AdminController@index');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
