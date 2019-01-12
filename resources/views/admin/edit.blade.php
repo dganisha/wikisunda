@@ -15,32 +15,37 @@
 			            </div>
 				    @endif
 
-	    <form method="POST"  enctype="multipart/form-data">
+	    <form method="POST" action="/admin/artikel/{{ $artikel->id }}" enctype="multipart/form-data">
 	    	@csrf
+        <input type="hidden" name="artikelid" value="{{ $artikel->id }}">
 	    	<label for="titleName" class="grey-text font-weight-light">Title Article</label>
             <div class="input-group mb-3">
-               <input type="text" name="artikel_title" class="form-control" placeholder="Title Article">
+               <input type="text" name="artikel_title" class="form-control" value="{{ $artikel->title }}" placeholder="Title Article">
             </div>
             <label for="titleName" class="grey-text font-weight-light">Description Article</label>
             <div class="input-group mb-3">
-               <input type="text" name="artikel_desk" class="form-control" placeholder="Description Article">
+               <input type="text" name="artikel_desk" class="form-control" value="{{ $artikel->description }}" placeholder="Description Article">
             </div>
             <label for="titleName" class="grey-text font-weight-light">Category Article</label>
+            <div class="input-group mb-3">
               <select class="browser-default custom-select" name="artikel_cate">
+                <option value="{{ $artikel->category }}">{{ $artikel->category }} (Current)</option>
               	<option value="art">Art</option>
               	<option value="place">Place</option>
               	<option value="history">History</option>
               	<option value="culinary">Culinary</option>
               </select>
+            </div>
             <label for="titleName" class="grey-text font-weight-light">Photo Article</label>
             <div class="input-group mb-3">
                <input type="file" name="artikel_photo">
+               <img src="{{ $artikel->image }}" style="width:300;max-width:300px" height="100"></a>
             </div>
         	<textarea id="artikel_editor" name="artikel_artikel" rows="10" cols="80">
-        		Masukkan artikel
+        		{{ $artikel->article }}
             </textarea>
 
-            <button type="submit" class="btn btn-primary">Tambah Artikel</button>
+            <button type="submit" class="btn btn-primary">Rubah Artikel</button>
         </form>
 	 </div>
 @endsection

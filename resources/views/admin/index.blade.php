@@ -13,6 +13,31 @@
 	   
 	    <div class="row">
 	         <div class="col-12">
+	         		@if (Session::has('success'))
+				        <div class="col-md-12">
+				          <div class="alert alert-success alert-dismissible">
+				            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				            <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+				            {{ Session::get('success')}}
+				          </div>
+				        </div>
+				    @elseif (Session::has('failed'))
+				        <div class="col-md-12">
+				          <div class="alert alert-danger alert-dismissible">
+				            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				            <h4><i class="icon fa fa-close"></i> Failed!</h4>
+				            {{ Session::get('failed')}}
+				          </div>
+				        </div>
+				    @elseif(count($errors) > 0)
+			            <div class="alert alert-danger alert-dismissible">
+			              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			              <h4><i class="icon fa fa-close"></i> Failed!</h4>
+			              @foreach($errors->all() as $error)
+			                <p><i>{{ $error }}</i></p>
+			              @endforeach
+			            </div>
+				    @endif
 	            <div class="content border">
 	               <table class="table table-bordered">
 	                  <col width="5%">
@@ -22,35 +47,23 @@
 	                     <tr class="text-center">
 	                        <th>#</th>
 	                        <th class="text-left">Title Article</th>
-	                        <th>Content Article</th>
+	                        <th>Description Article</th>
 	                        <th></th>
 	                     </tr>
 	                  </thead>
 	                  <tbody>
-	                     <tr>
-	                        <th class="text-center">1</th>
-	                        <th>Article #01</th>
-	                        <th>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis necessitatibus in
-	                           harum
-	                           corporis molestiae neque enim cupiditate ducimus repellendus, dicta placeat blanditiis velit
-	                           suscipit. Animi esse sunt natus amet quos.</th>
-	                        <th>
-	                           <a href="#" class="btn btn-success btn-sm m-0 waves-effect">Edit</a>
-	                           <button type="button" class="btn btn-danger btn-sm m-0 waves-effect" onclick="return confirm('Are you sure to delete this article ?')">Delete</button>
-	                        </th>
-	                     </tr>
-	                     <tr>
-	                        <th class="text-center">2</th>
-	                        <th>Article #02</th>
-	                        <th>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis necessitatibus in
-	                           harum
-	                           corporis molestiae neque enim cupiditate ducimus repellendus, dicta placeat blanditiis velit
-	                           suscipit. Animi esse sunt natus amet quos.</th>
-	                        <th>
-	                           <a href="#" class="btn btn-success btn-sm m-0 waves-effect">Edit</a>
-	                           <button type="button" class="btn btn-danger btn-sm m-0 waves-effect" onclick="return confirm('Are you sure to delete this article ?')">Delete</button>
-	                        </th>
-	                     </tr>
+	                  	@foreach($artikel as $atl)
+	                  	@php $no = 1; @endphp
+	                  	<tr id="{{ $atl->id }}">
+	                  		<th class="text-center">{{ $no }}</th>
+	                  		<th>{{ $atl->title }}</th>
+	                  		<th>{{  $atl->description }}</th>
+	                  		<th>
+	                  			<a href="/admin/artikel/{{ $atl->id }}" class="btn btn-success btn-sm m-0 waves-effect">Edit</a>
+	                  			<a><button type="button" class="delete btn btn-danger btn-sm m-0 waves-effect" data-artikel="{{ $atl->id }}"><i class="fa fa-trash-o fa-1x"></i> Delete</button></a>
+	                  		</th>
+	                  	</tr>
+	                  	@endforeach
 	                  </tbody>
 	               </table>
 	            </div>
