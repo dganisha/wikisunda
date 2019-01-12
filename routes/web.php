@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function (){
 	//Edit
 	Route::get('/admin/artikel/{id}', 'AdminController@show_edit');
 	Route::post('/admin/artikel/{id}', 'AdminController@edit_artikel');
+
+	Route::post('/delete_artikel', 'AdminController@delete_artikel');
 });
 
 Auth::routes();

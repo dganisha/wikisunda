@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0075)https://mdbootstrap.com/previews/docs/latest/html/carousel/video/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+  <head>   
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Wikisunda - Discover Sundanese</title>
@@ -18,6 +18,7 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     @endif
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style type="text/css">
       /* Navigation*/
       .navbar {
@@ -64,6 +65,7 @@
         transform: translate(-50%, -50%);
       }
     </style>
+  </head>
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 
@@ -148,6 +150,50 @@
         //bootstrap WYSIHTML5 - text editor
         $('.textarea').wysihtml5()
       })
+    </script>
+    <script type="text/javascript">
+      $(document).on('click', '.delete', function(){
+        swal({
+          title: "Anda yakin?",
+          text: "Artikel ini akan dihapus. setelah dihapus anda tidak akan bisa mengembalikan nya",
+          icon: "warning",
+          buttons: {
+            cancel: "Close",
+            catch: {
+              text: "OK",
+              closeModal: false,
+            },
+          }
+          // dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            var artikel = $(this).data('artikel')
+            $.ajax({
+              type: "POST",
+              data: "artikel=" + artikel,
+              url: '{{ url("/") }}/delete_artikel',
+              dataType: "json",
+              success: function(data) {
+                var response = data.result;
+                var msg = data.msg;
+                if(response == true){
+                  swal("Artikel telah berhasil dihapus", {
+                    icon: "success",
+                  });
+                  $("#"+project).remove()
+                }else{
+                  swal(msg);
+                }
+              }, error: function() {
+                swal("Something wrong, Your article is not deleted.");
+              }
+            });        
+          } else {
+            swal("Your article is safe.");
+          }
+        });    
+      });
     </script>
     @endif
 </body>

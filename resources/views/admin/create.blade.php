@@ -26,7 +26,7 @@
                <input type="text" name="artikel_desk" class="form-control" placeholder="Description Article">
             </div>
             <label for="titleName" class="grey-text font-weight-light">Category Article</label>
-              <select class="browser-default custom-select" name="articel_cate">
+              <select class="browser-default custom-select" name="artikel_cate">
               	<option value="art">Art</option>
               	<option value="place">Place</option>
               	<option value="history">History</option>

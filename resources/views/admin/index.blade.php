@@ -54,11 +54,14 @@
 	                  <tbody>
 	                  	@foreach($artikel as $atl)
 	                  	@php $no = 1; @endphp
-	                  	<tr>
+	                  	<tr id="{{ $atl->id }}">
 	                  		<th class="text-center">{{ $no }}</th>
 	                  		<th>{{ $atl->title }}</th>
 	                  		<th>{{  $atl->description }}</th>
-	                  		<th><a href="/admin/artikel/{{ $atl->id }}" class="btn btn-success btn-sm m-0 waves-effect">Edit</a></th>
+	                  		<th>
+	                  			<a href="/admin/artikel/{{ $atl->id }}" class="btn btn-success btn-sm m-0 waves-effect">Edit</a>
+	                  			<a><button type="button" class="delete btn btn-danger btn-sm m-0 waves-effect" data-artikel="{{ $atl->id }}"><i class="fa fa-trash-o fa-1x"></i> Delete</button></a>
+	                  		</th>
 	                  	</tr>
 	                  	@endforeach
 	                  </tbody>

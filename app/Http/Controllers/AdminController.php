@@ -55,7 +55,7 @@ class AdminController extends Controller
                 return redirect('/admin/create')->with('failed', 'kesalahan jaringan, silahkan ulangi kembali.');
             }
             $image->move($destinationPath, $name);
-            $updateBikin = $bikin->update(['image' => $name]);
+            $updateBikin = $bikin->update(['image' => "/article/$bikin->id/$name"]);
             if($bikin && $updateBikin){
             	return redirect('/admin')->with('success','Berhasil menambahkan artikel!');
             }else{
@@ -106,5 +106,20 @@ class AdminController extends Controller
 	    }else{
 	    	return redirect()->back();
 	    }
+    }
+
+    public function delete_artikel(Request $request)
+    {
+    	$cariArtikel = Article::find($request->artikel);
+    	if($cariArtikel == true){
+    		$delete = $cariArtikel->delete();
+    		if($delete){
+    			return response()->json(['result'=>true,'msg'=>"Data has been deleted"],200);
+    		}else{
+    			return response()->json(['result'=>false,'msg'=>"Not deleted"],500);
+    		}
+    	}else{
+    		return response()->json(['result'=>false,'msg'=>"Something wrong"],500);
+    	}
     }
 }
