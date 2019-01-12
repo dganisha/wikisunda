@@ -16,22 +16,23 @@
 
   
 
-        <div class="card text-center">
-            <div class="card-header">
-                {{ $cariArtikel->category }}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ $cariArtikel->category }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $cariArtikel->title }}</h5>
+                    <small class="text-muted" style="font-size: 10px">oleh {{ $cariArtikel->user->name }}</small>
+                    <hr>
+                    <p class="card-text">{!! $cariArtikel->article !!}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ $cariArtikel->created_at }} - <small>dilihat: {{ $cariArtikel->viewer }}</small>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ $cariArtikel->title }}</h5>
-                <small class="text-muted" style="font-size: 10px">oleh {{ $cariArtikel->user->name }}</small>
-                <hr>
-                <p class="card-text">{!! $cariArtikel->article !!}</p>
-            </div>
-            <div class="card-footer text-muted">
-                {{ $cariArtikel->created_at }} - <small>dilihat: {{ $cariArtikel->viewer }}</small>
-            </div>
+            <br>
+         
         </div>
-        <br>
-     
     </div>
 
 @endsection
