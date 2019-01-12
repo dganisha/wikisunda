@@ -70,7 +70,7 @@
 <body aria-busy="true">
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark mdb-color darken-1 fixed-top">
 
       <!-- Navbar brand -->
       @if(Auth::user())
