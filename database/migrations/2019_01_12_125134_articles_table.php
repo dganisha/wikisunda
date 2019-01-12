@@ -22,6 +22,7 @@ class ArticlesTable extends Migration
             $table->longtext('article');
             $table->enum('category',['art','history','place','culinary']);
             $table->string('image');
+            $table->integer('viewer');
             $table->timestamps();
         });
     }
